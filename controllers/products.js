@@ -6,6 +6,8 @@ const productSeed = require('../models/productSeed')
 //middleware
 const bodyParser = require('body-parser')
 productRouter.use(bodyParser.urlencoded({ extended: false}))
+const methodOverride = require('method-override')
+productRouter.use(methodOverride('_method'))
 
 // induces (index, new, delete, update, create, edit, show)
 
@@ -21,7 +23,7 @@ productRouter.get("/seed", (req, res) => {
 productRouter.get('/', (req, res) => {
     //[]grabs everything
     Product.find({}, (err, allProducts) => {
-        console.log(allProducts)
+        //console.log(allProducts)
         res.render('index.ejs', {products: allProducts})
     })
 })
@@ -31,6 +33,11 @@ productRouter.get('/new', (req, res) => {
     res.render('new.ejs')
 })
 
+productRouter.delete('/:id', (req, res) => {
+    Product.findByIdAndDelete(req.params.id, (err, deletedProduct) => {
+        res.redirect('/products')
+    })
+})
 
 // create route
 productRouter.post('/', (req, res) => {

@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-const productsController = require('./controllers/products')
+const productsController = require('./controllers/products.js')
 const app = express()
 const PORT = process.env.PORT
 

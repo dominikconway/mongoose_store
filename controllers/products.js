@@ -33,6 +33,7 @@ productRouter.get('/new', (req, res) => {
     res.render('new.ejs')
 })
 
+// delete route
 productRouter.delete('/:id', (req, res) => {
     Product.findByIdAndDelete(req.params.id, (err, deletedProduct) => {
         res.redirect('/products')
@@ -62,6 +63,17 @@ productRouter.get('/:id', (req, res) => {
     })
 })
 
+productRouter.get('/:id/edit', (req, res) => {
+    Product.findById(req.params.id, (err, product) => {
+        res.render('edit.ejs', {product})
+    })
+})
+
+productRouter.put('/:id', (req, res) => {
+    Product.findByIdAndUpdate(req.params.id, req.body, (err, updatedProduct) => {
+        res.redirect(`/products/${req.params.id}`)
+    })
+})
 
 
 module.exports = productRouter

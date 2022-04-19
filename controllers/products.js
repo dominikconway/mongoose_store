@@ -52,9 +52,9 @@ productRouter.post('/', (req, res) => {
     })
 })
     
-
+// show route
 productRouter.get('/:id', (req, res) => {
-    Product.findById(req.params.id, (err, foundProduct) => {
+    Product.findById(req.params.id, (err, foundProduct) => { console.log(foundProduct)
         if(err){
             console.log(err)
         }
@@ -66,6 +66,13 @@ productRouter.get('/:id', (req, res) => {
 productRouter.get('/:id/edit', (req, res) => {
     Product.findById(req.params.id, (err, product) => {
         res.render('edit.ejs', {product})
+    })
+})
+
+// add buy button
+productRouter.delete('/:id/buy',(req, res) => {
+    Product.findById(req.params.id, (err, product) => {
+
     })
 })
 

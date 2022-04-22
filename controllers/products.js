@@ -69,10 +69,17 @@ productRouter.get('/:id/edit', (req, res) => {
     })
 })
 
-// add buy button
-productRouter.delete('/:id/buy',(req, res) => {
-    Product.findById(req.params.id, (err, product) => {
-
+//  buy route
+productRouter.put('/buy/:id',(req, res) => {
+    Product.findById(req.params.id, (err, boughtProduct) => {
+        let productQty = boughtProduct.qty
+        let updatedQty = productQty - req.body.qty
+        req.body.qty = updatedQty
+    Product.findByIdAndUpdate(req.params.id, req.body, (err, updatedProduct) => {
+        if (err) return res.send(err)
+        res.redirect(`/products/${req.params.id}`)
+    })
+        
     })
 })
 

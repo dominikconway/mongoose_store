@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index page</title>
+    <link href="/public/styles.css" rel="stylesheet" type="text/css">
 </head>
 <a href="/products/new">Add a new product</a>
 <body>
-    <h1> Products index Page</h1>
+    <h1> Mongoose Store</h1>
     <%products.forEach(product => { %>
         <%=product.name%> <br>
        <a href="/products/<%=product._id%>"><img src=<%=product.img%>></a>  <br>

@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 productRouter.use(bodyParser.urlencoded({ extended: false}))
 const methodOverride = require('method-override')
 productRouter.use(methodOverride('_method'))
+productRouter.use('/public', express.static('public'))
 
 // induces (index, new, delete, update, create, edit, show)
 

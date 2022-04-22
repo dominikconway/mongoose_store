@@ -9,6 +9,7 @@ const PORT = process.env.PORT
 // middleware
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
+app.use('/public', express.static('public'))
 
 app.use('/products', productsController)
 
